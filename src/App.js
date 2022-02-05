@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import Counter from "./components/Counter";
 import ClassCounter from "./components/ClassCounter";
 import './styles/App.css'
@@ -13,13 +13,32 @@ function App() {
         {id: 2, title: 'JavaScript 2', body: 'Description'},
         {id: 3, title: 'JavaScript 3', body: 'Description'},
     ])
+    const [title, setTitle] = useState('')
+
+    /*получение данных из неуправляемого инпута*/
+    const bodyInputRef = useRef()
+
+    const addNewPost = (e) => {
+        e.preventDefault()
+        console.log(title)
+        console.log(bodyInputRef.current.value)
+    }
 
     return (
         <div className="App">
+            {/*управляемый компонент*/}
             <form>
-                <MyInput type="text" placeholder='Название поста'/>
-                <MyInput type="text" placeholder='Описание поста'/>
-                <MyButton  disabled>Создать пост</MyButton>
+                <MyInput type="text"
+                         placeholder='Название поста'
+                         value={title}
+                         onChange={e=>setTitle(e.target.value)}
+                />
+                {/*неуправляемый\неконтролируемый компонент*/}
+                <MyInput
+                    ref={bodyInputRef}
+                    type="text"
+                    placeholder='Описание поста'/>
+                <MyButton onClick={addNewPost}>Создать пост</MyButton>
             </form>
             <PostList posts={posts} title='Посты про JS'/>
 
