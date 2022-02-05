@@ -11,6 +11,7 @@ function App() {
     function decrement() {
         setLikes(likes - 1)
     }
+
     return (
         <div className="App">
             <h1>{likes}</h1>
