@@ -8,6 +8,7 @@ import MyButton from "./components/UI/button/MyButton";
 import MyInput from "./components/UI/input/MyInput";
 import PostForm from "./components/UI/PostForm";
 
+
 function App() {
     const [posts, setPosts] = useState([
         {id: 1, title: 'JavaScript', body: 'Description'},
